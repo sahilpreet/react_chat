@@ -1,7 +1,5 @@
 {
-  "//": [
-    "homepage https://sahilpreet.github.io/react_chat"
-  ],
+  "homepage": "https://sahilpreet.github.io/react_chat",
   "name": "react_chat",
   "version": "0.1.0",
   "private": true,
