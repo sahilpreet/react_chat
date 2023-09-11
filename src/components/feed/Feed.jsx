@@ -6,29 +6,42 @@ import { Posts } from "../../DummyData";
 import axios from "axios";
 import { AuthContext } from "../../context/AuthContext";
 
-function Feed({username}) {
-  const [posts,setPosts]=useState([])
-  const {user}=useContext(AuthContext)
+function Feed({ username }) {
+  const [posts, setPosts] = useState([]);
+  const { user} = useContext(AuthContext);
+  const [postAdded, setPostAdded] = useState(false);
 
-  useEffect(()=>{
-    const fetchPosts=async()=>{
-      const res=username
-      ?await axios.get("/posts/profile/"+username)
-      :await axios.get("/posts/timeline/"+user?._id)
-      setPosts(res.data.sort((p1,p2)=>{
-        return new Date(p2?.createdAt)- new Date(p1?.createdAt)
-      }))
-    }
-    fetchPosts()
-  },[username,user?._id])
+  useEffect(() => {
+    const fetchPosts = async () => {
+      const res = username
+        ? await axios.get("/posts/profile/" + username)
+        : await axios.post("/posts/timeline/" + user?._id,{"followings":user?.followings});
+      setPosts(
+        res.data.sort((p1, p2) => {
+          return new Date(p2?.createdAt) - new Date(p1?.createdAt);
+        })
+      );
+    };
+    fetchPosts();
+  }, [username, user?._id]);
+
+  const PostsFeed = () => {
+    return (
+      <>
+        {username === user?.username && (
+          <Share setpostAdded={setPostAdded}></Share>
+        )}
+        {posts.map((p) => (
+          <Post key={p?._id} post={p} />
+        ))}
+      </>
+    );
+  };
 
   return (
     <div className="feed">
       <div className="feedWrapper">
-        {username===user?.username && <Share></Share>}
-        {posts.map((p) => (
-          <Post key={p?._id} post={p} />
-        ))}
+        <PostsFeed />
       </div>
     </div>
   );

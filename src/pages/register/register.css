@@ -82,3 +82,22 @@
     font-weight: 500;
     cursor: pointer;
 }
+
+.loginBox .shareOption{
+    display: flex;
+    margin: 7px  0;
+}
+
+.loginBox .shareOption .shareIcon{
+   flex:1;
+}
+
+.loginBox .shareOption .shareOptionText{
+   flex:4;
+}
+
+.loginBox .shareOption #file{
+    flex:0.1
+}
+
+

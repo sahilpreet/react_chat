@@ -11,8 +11,10 @@ import { AuthContext } from "../../context/AuthContext";
 function Profile() {
   const [user, setUser] = useState({});
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
-  const username=useParams().username
+  const BUIF = process.env.REACT_APP_BACKEND_USER_IMAGE_URL;
   // const {currentUser}=useContext(AuthContext)
+  const {user:currentUser,postShared,dispatch,error}=useContext(AuthContext)
+  const username=useParams().username
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -22,6 +24,9 @@ function Profile() {
     fetchUser();
   }, [username,user._id]);
 
+  
+  // console.log(postShared)
+
   return (
     <>
       <Topbar></Topbar>
@@ -30,8 +35,8 @@ function Profile() {
         <div className="profileRight">
           <div className="profileRightTop">
             <div className="profileCover">
-            <img className="profileCoverImg" src={user.coverPicture?PF+user.coverPicture: PF+"/posts/dummy.jpeg"} alt="" />
-            <img className="profileUserImg" src={user.profilePicture?PF+user.profilePicture:PF+"/persons/dummy.jpeg"} alt="" />
+            <img crossOrigin="anonymous" className="profileCoverImg" src={user.username?BUIF+user._id: PF+"/posts/dummy.jpeg"} alt="" />
+            <img crossOrigin="anonymous" className="profileUserImg" src={user.username?BUIF+user._id:PF+"/persons/dummy.jpeg"} alt="" />
             </div>
             <div className="profileInfo">
                 <h4 className="profileInfoName">{user?.username}</h4>
@@ -39,7 +44,7 @@ function Profile() {
             </div>
           </div>
           <div className="profileRightBottom">
-            <Feed username={username}></Feed>
+            <Feed username={username} ></Feed>
             <Rightbar user={user}/>
           </div>
         </div>

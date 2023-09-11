@@ -1,0 +1,29 @@
+.searchContainer{
+    display: flex;
+    width: 100%;
+}
+
+.searchItemsDisplay{
+    flex: 5.5;
+    padding: 20px;
+}
+
+.searchbarFriend{
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    /* justify-content: space-around; */
+}
+
+.searchbarFriendImg{
+    width: 62px;
+    height: 62px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 25px;
+}
+
+.searchbarFriendName{
+    font-size: 25px;
+    font-weight: 400;
+}

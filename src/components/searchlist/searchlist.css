@@ -1,0 +1,12 @@
+.searchbarFriendImg{
+    width: 62px;
+    height: 62px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 25px;
+}
+
+.searchbarFriendName{
+    font-size: 25px;
+    font-weight: 400;
+}

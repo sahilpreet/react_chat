@@ -39,9 +39,12 @@
 }
 
 .rightbarTitle{
+    text-align: center;
     font-size: 18px;
     font-weight: 500;
     margin-bottom: 10px;
+    font-size: 30px;
+    font-weight: 500;
 }
 
 .rightbarInfo{
@@ -65,7 +68,7 @@
 .rightbarFollowings{
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: space-evenly;
 }
 
 .rightbarFollowing{
@@ -80,6 +83,13 @@
     height: 100px;
     object-fit: cover;
     border-radius: 5px;
+}
+
+.rightbarFollowingName{
+    margin-top: 10px;
+    font-size: 20px;
+    font-weight: 300;
+    text-align: center;
 }
 
 .rightbarFollowButton{

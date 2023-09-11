@@ -4,6 +4,7 @@ import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
 import { Person } from "@mui/icons-material";
 import { useContext } from "react";
+import Search  from "./pages/search/Search";
 // import { createBrowserRouter,RouterProvider } from "react-router-dom";
 import {
   BrowserRouter,
@@ -40,6 +41,7 @@ function App() {
         <Route path="/profile/:username" element={user?<Profile />:<Register/>} />
         <Route path="/login" element={user?<Navigate to="/" replace={true}/>:<Login />} />
         <Route path="/register" element={user?<Navigate to="/" replace={true} />:<Register />} />
+        <Route path="/search" element={user?<Search />:<Register/>} />
       </Routes>
     </BrowserRouter>
   );

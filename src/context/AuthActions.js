@@ -21,3 +21,7 @@ export const Unfollow=(userId)=>({
     type:"UNFOLLOW",
     payload:userId
 })
+
+export const postShared=()=>({
+    type:"POSTADDED"
+})

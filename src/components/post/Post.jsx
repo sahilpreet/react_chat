@@ -13,7 +13,9 @@ function Post({ post }) {
   const [user, setUser] = useState({});
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   const BUF = process.env.REACT_APP_BACKEND_IMAGE_URL
+  const BUIF = process.env.REACT_APP_BACKEND_USER_IMAGE_URL;
   const { user: currentUser } = useContext(AuthContext);
+
 
   useEffect(()=>{
     setIsLiked(post.likes.includes(currentUser._id))
@@ -43,9 +45,10 @@ function Post({ post }) {
             <Link to={`/profile/${user.username}`}>
               <img
                 className="postProfileImg"
+                crossOrigin="anonymous"
                 src={
-                  user.profilePicture
-                    ? PF + user.profilePicture
+                  user.username
+                    ? BUIF + user._id
                     : PF + `/persons/dummy.jpeg`
                 }
                 alt=""

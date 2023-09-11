@@ -1,8 +1,9 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import "./register.css";
 import axios from "axios";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
+import { PermMedia } from "@mui/icons-material";
 
 function Register() {
   const email = useRef();
@@ -10,6 +11,7 @@ function Register() {
   const password = useRef();
   const passwordAgain = useRef();
   const navigate = useNavigate();
+  const [file,setFile]=useState(null)
 
   const handleClik = async (e) => {
     e.preventDefault();
@@ -21,11 +23,20 @@ function Register() {
         email: email.current.value.toLowerCase(),
         password: password.current.value,
       };
-      try {
-        const res = await axios.post("/auth/register", user);
-        navigate("/login");
-      } catch (error) {
-        console.log(error);
+      if(file){
+        const data=new FormData()
+        const filename = Date.now() + file.name
+        data.append("file",file)
+        data.append("name",filename)
+        data.append("username", username.current.value,)
+        data.append("email",email.current.value.toLowerCase())
+        data.append("password",password.current.value)
+        try {
+          const res = await axios.post("/auth/register", data);
+          navigate("/login");
+        } catch (error) {
+          console.log(error);
+        }
       }
     }
   };
@@ -69,6 +80,12 @@ function Register() {
               ref={passwordAgain}
               placeholder="Re-enter Password"
             />
+            <label htmlFor="file" className="shareOption">
+              <input required style={{"zIndex":"-1"}} type="file" id="file" accept=".png,jpg,.jpeg" onChange={(e)=>{setFile(e.target.files[0])}}/>
+              <PermMedia htmlColor="green" className="shareIcon" />
+              <span className="shareOptionText"> Upload Profile Picture</span>
+              {/* <input style={{display:"none"}} type="file" id="file" accept=".png,jpg,.jpeg" onChange={(e)=>{setFile(e.target.files[0])}}/> */}
+            </label>
             <button className="loginButton" type="submit">
               Sign Up
             </button>
