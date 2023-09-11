@@ -5,6 +5,7 @@ import Register from "./pages/register/Register";
 import { Person } from "@mui/icons-material";
 import { useContext } from "react";
 import Search  from "./pages/search/Search";
+import "./app.css"
 // import { createBrowserRouter,RouterProvider } from "react-router-dom";
 import {
   BrowserRouter,
