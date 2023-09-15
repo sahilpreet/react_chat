@@ -1,5 +1,11 @@
 import React, { useContext, useRef } from "react";
-import { Search, Person, Chat, Notifications } from "@mui/icons-material";
+import {
+  Search,
+  Person,
+  Chat,
+  Notifications,
+  BackHand,
+} from "@mui/icons-material";
 import "../topbar/topbar.css";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router";
@@ -9,7 +15,8 @@ import { colors } from "@mui/material";
 
 function Topbar() {
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
-  const BUIF = process.env.REACT_APP_BACKEND_USER_IMAGE_URL;
+  // const BUIF = process.env.REACT_APP_BACKEND_USER_IMAGE_URL;
+  const backendUrl = process.env.REACT_APP_BACKEND_URL;
   const { user, dispatch } = useContext(AuthContext);
   const searchItem = useRef();
   const navigate = useNavigate();
@@ -21,7 +28,7 @@ function Topbar() {
     try {
       if (searchItem.current.value) {
         const res = await axios.get(
-          `/users/search?name=${searchItem.current.value}`
+          `${backendUrl}users/search?name=${searchItem.current.value}`
         );
         console.log(res.data);
         dispatch({ type: "SEARCHED", payload: res.data });
@@ -52,9 +59,11 @@ function Topbar() {
       </div>
       <div className="topbarRight">
         <div className="topbarlinks">
-          <span className="topbarLink">Homepage</span>
-          <Link to={"/"} style={{textDecoration:"none",color:"white"}}>
-          <span className="topbarLink">Timeline</span>
+          <Link to={"/"} style={{ textDecoration: "none", color: "white" }}>
+            <span className="topbarLink">Homepage</span>
+          </Link>
+          <Link to={"/"} style={{ textDecoration: "none", color: "white" }}>
+            <span className="topbarLink">Timeline</span>
           </Link>
         </div>
         <div className="topbarIcons">
@@ -74,7 +83,7 @@ function Topbar() {
         <Link to={`/profile/${user?.username}`}>
           <img
             crossOrigin="anonymous"
-            src={BUIF + user._id}
+            src={backendUrl + "users/image/download/" + user._id}
             alt=""
             className="topbarImg"
           />

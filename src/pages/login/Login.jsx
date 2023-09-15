@@ -9,6 +9,8 @@ function Login() {
   const email = useRef();
   const password = useRef();
   const { user, isFetching, error, dispatch } = useContext(AuthContext);
+  const backendUrl=process.env.REACT_APP_BACKEND_URL
+
 
   const handleClick = (e) => {
     e.preventDefault();

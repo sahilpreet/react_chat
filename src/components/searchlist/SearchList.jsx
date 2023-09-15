@@ -4,7 +4,8 @@ import { Link } from "react-router-dom";
 
 function SearchList({ searchListItem }) {
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
-  const BUF = process.env.REACT_APP_BACKEND_IMAGE_URL;
+  // const BUF = process.env.REACT_APP_BACKEND_IMAGE_URL;
+  const backendUrl = process.env.REACT_APP_BACKEND_URL;
   const BUIF = process.env.REACT_APP_BACKEND_USER_IMAGE_URL;
 
   return (
@@ -15,7 +16,7 @@ function SearchList({ searchListItem }) {
           className="searchbarFriendImg"
           src={
             searchListItem.username
-              ? `${BUIF}${searchListItem._id}`
+              ? `${backendUrl}users/image/download/${searchListItem._id}`
               : PF + "/persons/dummy.jpeg"
           }
           alt=""

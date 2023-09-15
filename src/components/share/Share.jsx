@@ -14,7 +14,8 @@ import { useNavigate } from "react-router";
 
 function Share({setpostAdded}) {
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
-  const BUIF = process.env.REACT_APP_BACKEND_USER_IMAGE_URL;
+  // const BUIF = process.env.REACT_APP_BACKEND_USER_IMAGE_URL;
+  const backendUrl = process.env.REACT_APP_BACKEND_URL;
   const { user,dispatch } = useContext(AuthContext);
   const desc = useRef();
   const [file, setFile] = useState(null);
@@ -32,7 +33,7 @@ function Share({setpostAdded}) {
       data.append("userId", user._id);
       data.append("desc", desc.current.value);
       try {
-        const res = await axios.post("/posts/image/upload", data);
+        const res = await axios.post(backendUrl+"posts/image/upload", data);
         console.log(res.data);
         if (res.data){
           desc.current.value=""
@@ -52,7 +53,7 @@ function Share({setpostAdded}) {
         desc: desc.current.value,
       };
       try {
-        const res = await axios.post("/posts/image/upload", post);
+        const res = await axios.post(backendUrl+"posts/image/upload", post);
         console.log(res.data);
 
         // window.location.reload();
@@ -70,7 +71,7 @@ function Share({setpostAdded}) {
             crossOrigin="anonymous"
             className="shareProfileImg"
             src={
-              user.username ? BUIF + user._id : `${PF}/persons/dummy.jpeg`
+              user.username ? backendUrl+"users/image/download/" + user._id : `${PF}/persons/dummy.jpeg`
             }
             alt=""
           />

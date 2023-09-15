@@ -12,13 +12,14 @@ function Profile() {
   const [user, setUser] = useState({});
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   const BUIF = process.env.REACT_APP_BACKEND_USER_IMAGE_URL;
+  const backendUrl = process.env.REACT_APP_BACKEND_URL;
   // const {currentUser}=useContext(AuthContext)
   const {user:currentUser,postShared,dispatch,error}=useContext(AuthContext)
   const username=useParams().username
 
   useEffect(() => {
     const fetchUser = async () => {
-      const res = await axios.get(`/users?username=${username}`);
+      const res = await axios.get(backendUrl+`users?username=${username}`);
       setUser(res.data);
     };
     fetchUser();
@@ -35,8 +36,8 @@ function Profile() {
         <div className="profileRight">
           <div className="profileRightTop">
             <div className="profileCover">
-            <img crossOrigin="anonymous" className="profileCoverImg" src={user.username?BUIF+user._id: PF+"/posts/dummy.jpeg"} alt="" />
-            <img crossOrigin="anonymous" className="profileUserImg" src={user.username?BUIF+user._id:PF+"/persons/dummy.jpeg"} alt="" />
+            <img crossOrigin="anonymous" className="profileCoverImg" src={user.username?backendUrl+"users/image/download/"+user._id: PF+"/posts/dummy.jpeg"} alt="" />
+            <img crossOrigin="anonymous" className="profileUserImg" src={user.username?backendUrl+"users/image/download/"+user._id:PF+"/persons/dummy.jpeg"} alt="" />
             </div>
             <div className="profileInfo">
                 <h4 className="profileInfoName">{user?.username}</h4>

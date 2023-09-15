@@ -5,13 +5,14 @@ import { Link } from "react-router-dom";
 
 function CloseFriend({ userId }) {
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
-  const BUF = process.env.REACT_APP_BACKEND_IMAGE_URL;
-  const BUIF = process.env.REACT_APP_BACKEND_USER_IMAGE_URL;
+  // const BUF = process.env.REACT_APP_BACKEND_IMAGE_URL;
+  const backendUrl = process.env.REACT_APP_BACKEND_URL;
+  // const BUIF = process.env.REACT_APP_BACKEND_USER_IMAGE_URL;
   const [userFriend, setUserFriend] = useState({});
 
   useEffect(() => {
     const fetchUser = async () => {
-      const res = await axios.get(`/users?userId=${userId}`);
+      const res = await axios.get(`${backendUrl}users?userId=${userId}`);
       setUserFriend(res.data);
     };
     fetchUser();
@@ -25,9 +26,9 @@ function CloseFriend({ userId }) {
         crossOrigin="anonymous"
           className="sidebarFriendImg"
           src={
-            userFriend.profilePicture
-              ? `${BUIF}${userFriend._id}`
-              : PF + "/persons/dummy.jpeg"
+            userFriend.username
+              ? backendUrl+"users/image/download/"+userFriend._id
+              : PF + "persons/dummy.jpeg"
           }
           alt=""
         />

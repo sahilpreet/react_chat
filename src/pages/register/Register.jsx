@@ -12,6 +12,7 @@ function Register() {
   const passwordAgain = useRef();
   const navigate = useNavigate();
   const [file,setFile]=useState(null)
+  const backendUrl=process.env.REACT_APP_BACKEND_URL
 
   const handleClik = async (e) => {
     e.preventDefault();
@@ -32,7 +33,7 @@ function Register() {
         data.append("email",email.current.value.toLowerCase())
         data.append("password",password.current.value)
         try {
-          const res = await axios.post("/auth/register", data);
+          const res = await axios.post(backendUrl+"auth/register", data);
           navigate("/login");
         } catch (error) {
           console.log(error);

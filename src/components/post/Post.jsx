@@ -12,8 +12,9 @@ function Post({ post }) {
   const [isLiked, setIsLiked] = useState(false);
   const [user, setUser] = useState({});
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
-  const BUF = process.env.REACT_APP_BACKEND_IMAGE_URL
   const BUIF = process.env.REACT_APP_BACKEND_USER_IMAGE_URL;
+  const BUF = process.env.REACT_APP_BACKEND_IMAGE_URL
+  const backendUrl = process.env.REACT_APP_BACKEND_URL
   const { user: currentUser } = useContext(AuthContext);
 
 
@@ -23,7 +24,7 @@ function Post({ post }) {
 
   useEffect(() => {
     const fetchUser = async () => {
-      const res = await axios.get(`/users?userId=${post.userId}`);
+      const res = await axios.get(`${backendUrl}users?userId=${post.userId}`);
       setUser(res.data);
     };
     fetchUser();
@@ -31,7 +32,7 @@ function Post({ post }) {
   
   const likeHandler = async () => {
     try {
-      axios.put("/posts/" + post._id + "/like", { userId: currentUser._id });
+      axios.put(backendUrl+"posts/" + post._id + "/like", { userId: currentUser._id });
     } catch (error) {}
     setLike((prevState) => (isLiked ? prevState - 1 : prevState + 1));
     setIsLiked((prevState) => !prevState);
@@ -48,7 +49,7 @@ function Post({ post }) {
                 crossOrigin="anonymous"
                 src={
                   user.username
-                    ? BUIF + user._id
+                    ? backendUrl+"users/image/download/" + user._id
                     : PF + `/persons/dummy.jpeg`
                 }
                 alt=""
@@ -63,7 +64,7 @@ function Post({ post }) {
         </div>
         <div className="postCenter">
           <span className="postText">{post?.desc}</span>
-          <img className="postImg" crossOrigin="anonymous" src={BUF+post._id} alt="" />
+          <img className="postImg" crossOrigin="anonymous" src={backendUrl+"posts/image/download/"+post._id} alt="" />
         </div>
         <div className="postBottom">
           <div className="postBottomLeft">

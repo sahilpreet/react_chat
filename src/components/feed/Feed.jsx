@@ -10,12 +10,13 @@ function Feed({ username }) {
   const [posts, setPosts] = useState([]);
   const { user} = useContext(AuthContext);
   const [postAdded, setPostAdded] = useState(false);
+  const backendUrl=process.env.REACT_APP_BACKEND_URL
 
   useEffect(() => {
     const fetchPosts = async () => {
       const res = username
-        ? await axios.get("/posts/profile/" + username)
-        : await axios.post("/posts/timeline/" + user?._id,{"followings":user?.followings});
+        ? await axios.get(`${backendUrl}posts/profile/` + username)
+        : await axios.post(`${backendUrl}posts/timeline/` + user?._id,{"followings":user?.followings});
       setPosts(
         res.data.sort((p1, p2) => {
           return new Date(p2?.createdAt) - new Date(p1?.createdAt);
