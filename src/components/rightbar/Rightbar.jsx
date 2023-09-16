@@ -63,13 +63,13 @@ function Rightbar({ user }) {
     return (
       <>
         <div className="birthdayContainer">
-          <img className="birthdayImg" src={`${PF}/gift.jpg`} alt="" />
+          <img crossOrigin="anonymous" className="birthdayImg" src={backendUrl + "assets/image/download/gift"} alt="" />
           <span className="birthdayText">
             <b>Rashmika</b> and <b>3 other friends</b>{" "}
             <b>have a birthday today</b>
           </span>
         </div>
-        <img className="rightbarAd" src={`${PF}/advertisement.jpg`} alt="" />
+        <img crossOrigin="anonymous" className="rightbarAd" src={backendUrl + "assets/image/download/advertisement"} alt="" />
         {/* <h4 className="rightbarTitle">Online Friends</h4>
         <ul className="rightbarFriendList">
           {Users.map((u) => (

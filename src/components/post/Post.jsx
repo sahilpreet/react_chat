@@ -13,14 +13,13 @@ function Post({ post }) {
   const [user, setUser] = useState({});
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   const BUIF = process.env.REACT_APP_BACKEND_USER_IMAGE_URL;
-  const BUF = process.env.REACT_APP_BACKEND_IMAGE_URL
-  const backendUrl = process.env.REACT_APP_BACKEND_URL
+  const BUF = process.env.REACT_APP_BACKEND_IMAGE_URL;
+  const backendUrl = process.env.REACT_APP_BACKEND_URL;
   const { user: currentUser } = useContext(AuthContext);
 
-
-  useEffect(()=>{
-    setIsLiked(post.likes.includes(currentUser._id))
-  },[currentUser._id,post.likes])
+  useEffect(() => {
+    setIsLiked(post.likes.includes(currentUser._id));
+  }, [currentUser._id, post.likes]);
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -29,15 +28,17 @@ function Post({ post }) {
     };
     fetchUser();
   }, [post.userId]);
-  
+
   const likeHandler = async () => {
     try {
-      axios.put(backendUrl+"posts/" + post._id + "/like", { userId: currentUser._id });
+      axios.put(backendUrl + "posts/" + post._id + "/like", {
+        userId: currentUser._id,
+      });
     } catch (error) {}
     setLike((prevState) => (isLiked ? prevState - 1 : prevState + 1));
     setIsLiked((prevState) => !prevState);
   };
-  
+
   return (
     <div className="post">
       <div className="postWrapper">
@@ -49,7 +50,7 @@ function Post({ post }) {
                 crossOrigin="anonymous"
                 src={
                   user.username
-                    ? backendUrl+"users/image/download/" + user._id
+                    ? backendUrl + "users/image/download/" + user._id
                     : PF + `/persons/dummy.jpeg`
                 }
                 alt=""
@@ -64,19 +65,26 @@ function Post({ post }) {
         </div>
         <div className="postCenter">
           <span className="postText">{post?.desc}</span>
-          <img className="postImg" crossOrigin="anonymous" src={backendUrl+"posts/image/download/"+post._id} alt="" />
+          <img
+            className="postImg"
+            crossOrigin="anonymous"
+            src={backendUrl + "posts/image/download/" + post._id}
+            alt=""
+          />
         </div>
         <div className="postBottom">
           <div className="postBottomLeft">
             <img
+              crossOrigin="anonymous"
               className="likeIcon"
-              src={`${PF}/like.png`}
+              src={backendUrl + "assets/image/download/like"}
               onClick={likeHandler}
               alt=""
             />
             <img
+              crossOrigin="anonymous"
               className="likeIcon"
-              src={`${PF}/heart.png`}
+              src={backendUrl + "assets/image/download/heart"}
               onClick={likeHandler}
               alt=""
             />
