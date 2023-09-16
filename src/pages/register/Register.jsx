@@ -4,6 +4,7 @@ import axios from "axios";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import { PermMedia } from "@mui/icons-material";
+import { CircularProgress } from "@mui/material";
 
 function Register() {
   const email = useRef();
@@ -13,6 +14,8 @@ function Register() {
   const navigate = useNavigate();
   const [file,setFile]=useState(null)
   const backendUrl=process.env.REACT_APP_BACKEND_URL
+  const [registerLoading,setRegisterLoading]=useState(false)
+
 
   const handleClik = async (e) => {
     e.preventDefault();
@@ -33,7 +36,12 @@ function Register() {
         data.append("email",email.current.value.toLowerCase())
         data.append("password",password.current.value)
         try {
+          setRegisterLoading(true)
           const res = await axios.post(backendUrl+"auth/register", data);
+          if(res.data){
+            // console.log(res)
+            setRegisterLoading(false)
+          }
           navigate("/login");
         } catch (error) {
           console.log(error);
@@ -52,7 +60,7 @@ function Register() {
           </span>
         </div>
         <div className="loginRight">
-          <form className="loginBox" onSubmit={handleClik}>
+          <form className="loginBox" onSubmit={handleClik} disabled={registerLoading}>
             <input
               ref={username}
               required
@@ -88,11 +96,19 @@ function Register() {
               {/* <input style={{display:"none"}} type="file" id="file" accept=".png,jpg,.jpeg" onChange={(e)=>{setFile(e.target.files[0])}}/> */}
             </label>
             <button className="loginButton" type="submit">
-              Sign Up
+            {registerLoading ? (
+                  <CircularProgress color="inherit" size="20px" />
+                ) : (
+                  "Sign Up"
+                )}
             </button>
             <Link to="/login">
               <button className="loginRegisterButton">
-                Login into account
+                {registerLoading ? (
+                  <CircularProgress color="inherit" size="20px" />
+                ) : (
+                  "Login into account"
+                )}
               </button>
             </Link>
           </form>

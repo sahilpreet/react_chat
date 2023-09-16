@@ -17,8 +17,6 @@ import { AuthContext } from "../../context/AuthContext";
 function Sidebar() {
   const {user}=useContext(AuthContext)
 
-  console.log(user.followers)
-
   return (
     <div className="sidebar">
       <div className="sidebarWrapper">
