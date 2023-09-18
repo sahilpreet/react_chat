@@ -23,7 +23,8 @@
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background-color: limegreen;
+  background-color: #48cae4;
+  /* background-color: limegreen; */
   position: absolute;
   top: 2px;
   right: 2px;

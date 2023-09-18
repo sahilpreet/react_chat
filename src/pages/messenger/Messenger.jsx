@@ -10,7 +10,7 @@ import { io } from "socket.io-client";
 
 function Messenger() {
   const [conversations, setConversations] = useState([]);
-  const { user } = useContext(AuthContext);
+  const { user, socket } = useContext(AuthContext);
   const backendUrl = process.env.REACT_APP_BACKEND_URL;
   const [currentChat, setCurrentChat] = useState(null);
   const [messages, setMessages] = useState(null);
@@ -18,11 +18,12 @@ function Messenger() {
   const [arrivalMessage, setArrivalMessage] = useState(null);
   const [onlineUsers, setOnlineUsers] = useState([]);
   const scrollRef = useRef();
-  const socket = useRef();
+  // const socket = useRef();
 
   useEffect(() => {
-    socket.current = io("ws://localhost:8900");
-    socket.current?.on("getMessage", (data) => {
+    // socket.current = io("ws://localhost:8900");
+    // socket.current?.on("getMessage", (data) => {
+    socket?.on("getMessage", (data) => {
       setArrivalMessage({
         sender: data.senderId,
         text: data.text,
@@ -33,9 +34,14 @@ function Messenger() {
 
   useEffect(() => {
     if (user?._id) {
-      socket.current?.emit("addUser", user?._id);
-      socket.current?.on("getUsers", (users) => {
-        setOnlineUsers(user.followings.filter(f=>(users.some(u=>u.userId===f))));
+      // socket.current?.emit("addUser", user?._id);
+      socket?.emit("addUser", user?._id);
+      // socket.current?.on("getUsers", (users) => {
+      socket?.on("getUsers", (users) => {
+        console.log(users);
+        setOnlineUsers(
+          user.followings.filter((f) => users.some((u) => u.userId === f))
+        );
       });
     }
   }, [user]);
@@ -87,7 +93,8 @@ function Messenger() {
       const receiverId = currentChat.member.find(
         (member) => member !== user._id
       );
-      socket.current.emit("sendMessage", {
+      // socket.current?.emit("sendMessage", {
+      socket?.emit("sendMessage", {
         senderId: user._id,
         receiverId,
         text: newMessage,
@@ -102,10 +109,16 @@ function Messenger() {
     }
   };
 
-  const handleCurrentChat=async(userFollowing)=>{
-    const res=await axios.get(`${backendUrl}conversations/find/${userFollowing}/${user._id}`)
-    setCurrentChat(res.data)
-  }
+  const handleCurrentChat = async (userFollowing) => {
+    const resConversationpost=await axios.post(backendUrl+"conversations",{
+      receiverId:userFollowing,
+      senderId:user._id
+  })
+    // const res = await axios.get(
+    //   `${backendUrl}conversations/find/${userFollowing}/${user._id}`
+    // );
+    setCurrentChat(resConversationpost.data);
+  };
 
   return (
     <>
@@ -114,8 +127,9 @@ function Messenger() {
         <div className="chatMenu">
           <div className="chatMenuWrapper">
             <input placeholder="search for friends" className="chatMenuInput" />
+            <div className="chatMenuFollowings">Followings</div>
             {user.followings.map((u) => (
-              <div key={u} onClick={()=>handleCurrentChat(u)}>
+              <div key={u} onClick={() => handleCurrentChat(u)}>
                 <Conversation key={u} currentUser={user} friendId={u} />
               </div>
             ))}
@@ -157,6 +171,7 @@ function Messenger() {
         </div>
         <div className="chatOnline">
           <div className="chatOnlineWrapper">
+            <div className="chatMenuFollowings">Online</div>
             <ChatOnline
               onlineUsers={onlineUsers}
               currentId={user._id}

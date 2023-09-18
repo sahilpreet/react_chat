@@ -122,7 +122,7 @@ function Rightbar({ user }) {
                   crossOrigin="anonymous"
                   className="rightbarFollowingImg"
                   src={
-                    friend.profilePicture
+                    friend._id
                       ? backendUrl+"users/image/download/" + friend._id
                       : `${PF}/persons/1.jpeg`
                   }

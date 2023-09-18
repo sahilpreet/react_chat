@@ -4,7 +4,9 @@
   position: sticky;
   top: 0;
   align-items: center;
-  background-color: #1877f2;
+  /* background-color: #1877f2; */
+  /* background-color: #8338ec; */
+  background-color: #3b28cc;
   display:flex;
   z-index: 999;
 

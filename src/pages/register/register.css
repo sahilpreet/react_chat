@@ -21,7 +21,8 @@
 }
 
 .loginLogo{
-    color: #1775ee;
+    /* color: #1775ee; */
+    color: #3b28cc;
     font-size: 50px;
     font-weight: 800;
     margin-bottom: 10px;
@@ -55,7 +56,8 @@
 
 .loginButton{
     height: 50px;
-    background-color: #1775ee;
+    /* background-color: #1775ee; */
+    background-color: #3b28cc;
     border-radius: 10px;
     border: none;
     color:white;
@@ -66,7 +68,7 @@
 
 .loginForgot{
     text-align: center;
-    color: #1775ee;
+    color: #3b28cc;
 }
 
 .loginRegisterButton{

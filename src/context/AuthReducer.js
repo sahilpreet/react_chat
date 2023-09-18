@@ -1,3 +1,5 @@
+import { io } from "socket.io-client";
+
 const AuthReducer = (state, action) => {
   switch (action.type) {
     case "LOGIN_START":
@@ -42,14 +44,18 @@ const AuthReducer = (state, action) => {
     case "SEARCHED":
       return {
         ...state,
-        searchItems:action.payload
-      }
-      case "NOTSEARCHED":
-        return {
-          ...state,
-          searchItems:[]
-        }
-    
+        searchItems: action.payload,
+      };
+    case "NOTSEARCHED":
+      return {
+        ...state,
+        searchItems: [],
+      };
+    case "SOCKET_START":
+      return {
+        ...state,
+        socket: io("ws://localhost:8900"),
+      };
 
     default:
       return state;

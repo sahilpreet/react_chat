@@ -18,6 +18,12 @@
   outline: none;
 }
 
+.chatMenuFollowings{
+  font-size: 20px;
+  margin-top: 20px;
+  margin-left: 15px;
+}
+
 .chatBox {
   flex: 5.5;
 }
@@ -44,8 +50,9 @@
 
 .chatMessageInput {
   width: 80%;
-  height: 90px;
+  height: 20px;
   padding: 10px;
+  border-radius: 20px;
 }
 
 .chatSubmitButton {
