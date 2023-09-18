@@ -1,5 +1,5 @@
 {
-  "//":"homepag https://sahilpreet.github.io/react_chat",
+  "//": "homepag https://sahilpreet.github.io/react_chat",
   "name": "react_chat",
   "version": "0.1.0",
   "private": true,
@@ -16,6 +16,7 @@
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.15.0",
     "react-scripts": "5.0.1",
+    "socket.io-client": "^4.7.2",
     "timeago.js": "^4.0.2",
     "web-vitals": "^2.1.4"
   },

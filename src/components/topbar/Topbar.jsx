@@ -62,23 +62,25 @@ function Topbar() {
           <Link to={"/"} style={{ textDecoration: "none", color: "white" }}>
             <span className="topbarLink">Homepage</span>
           </Link>
-          <Link to={"/"} style={{ textDecoration: "none", color: "white" }}>
-            <span className="topbarLink">Timeline</span>
+          <Link to={`/profile/${user?.username}`} style={{ textDecoration: "none", color: "white" }}>
+            <span className="topbarLink">Profile</span>
           </Link>
         </div>
         <div className="topbarIcons">
-          <div className="topbarIconItem">
+          {/* <div className="topbarIconItem">
             <Person></Person>
             <span className="topbarIconBadge">1</span>
-          </div>
+          </div> */}
+          <Link to="/messenger" style={{color:"white"}}>
           <div className="topbarIconItem">
             <Chat></Chat>
             <span className="topbarIconBadge">2</span>
           </div>
-          <div className="topbarIconItem">
+          </Link>
+          {/* <div className="topbarIconItem">
             <Notifications></Notifications>
             <span className="topbarIconBadge">4</span>
-          </div>
+          </div> */}
         </div>
         <Link to={`/profile/${user?.username}`}>
           <img
