@@ -54,7 +54,7 @@ const AuthReducer = (state, action) => {
     case "SOCKET_START":
       return {
         ...state,
-        socket: io("ws://localhost:8900"),
+        socket: io("http://localhost:8900"),
       };
 
     default:
