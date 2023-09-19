@@ -54,7 +54,9 @@ const AuthReducer = (state, action) => {
     case "SOCKET_START":
       return {
         ...state,
-        socket: io(action.payload),
+        socket: io(action.payload,{
+          path: "/socket/"
+        }),
       };
 
     default:

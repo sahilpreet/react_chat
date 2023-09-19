@@ -36,6 +36,7 @@ function Messenger() {
     if (user?._id) {
       // socket.current?.emit("addUser", user?._id);
       socket?.emit("addUser", user?._id);
+      console.log(socket)
       // socket.current?.on("getUsers", (users) => {
       socket?.on("getUsers", (users) => {
         console.log(users);
