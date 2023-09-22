@@ -1,9 +1,11 @@
 .profile{
     display: flex;
+
 }
 
 .profileRight{
-    flex:9;
+    /* flex:9; */
+    max-width: 100%;
 }
 
 .profileCover{
@@ -12,7 +14,7 @@
 }
 
 .profileCoverImg{
-    height: 250px;
+    max-height: 250px;
     width: 100%;
     object-fit: cover;
     position: absolute;
@@ -50,4 +52,25 @@
     display: flex;
 }
 
+.rightbarFollowButton{
+    margin: auto;
+}
+
+@media only screen and (max-width: 600px) {
+    .profileCover{
+        height: 200px;
+    }
+    .profileCoverImg{
+        height: 150px;
+    }
+    .profileUserImg{
+        top:90px;
+        width:100px;
+        height: 100px;
+    }
+    .profileRightBottom{
+        flex-direction:column ;
+    }
+
+  }
 

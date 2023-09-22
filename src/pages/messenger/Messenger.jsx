@@ -129,11 +129,14 @@ function Messenger() {
           <div className="chatMenuWrapper">
             <input placeholder="search for friends" className="chatMenuInput" />
             <div className="chatMenuFollowings">Followings</div>
+            <div className="chatMenuFollowingsItem">
+
             {user.followings.map((u) => (
-              <div key={u} onClick={() => handleCurrentChat(u)}>
+              <div className="chatMenuFollowingsItem" key={u} onClick={() => handleCurrentChat(u)}>
                 <Conversation key={u} currentUser={user} friendId={u} />
               </div>
             ))}
+            </div>
           </div>
         </div>
         <div className="chatBox">

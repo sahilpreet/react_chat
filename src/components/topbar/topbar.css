@@ -1,6 +1,6 @@
 .topbarContainer {
   height: 50px;
-  width: 100%;
+  width: 100vw;
   position: sticky;
   top: 0;
   align-items: center;
@@ -44,6 +44,7 @@
 .searchInput{
     border: none;
     width: 70%;
+    text-overflow: ellipsis;
 }
 
 .searchInput:focus{
@@ -100,3 +101,16 @@
     object-fit: cover;
     cursor: pointer;
 }
+
+@media only screen and (max-width: 300px) {
+    .topbarLinks{
+        display: none;
+    }
+    .logo{
+        font-size: 15px;
+    }
+    .searchbar{
+        width: 60%;
+    }
+
+  }

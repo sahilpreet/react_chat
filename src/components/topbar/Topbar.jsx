@@ -58,7 +58,7 @@ function Topbar() {
         </form>
       </div>
       <div className="topbarRight">
-        <div className="topbarlinks">
+        <div className="topbarLinks">
           <Link to={"/"} style={{ textDecoration: "none", color: "white" }}>
             <span className="topbarLink">Homepage</span>
           </Link>

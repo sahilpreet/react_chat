@@ -48,7 +48,7 @@
     width: 100%;
     /* height:400px; */
     margin-top: 20px;
-    max-height: 500px;
+    min-height: 50px;
     object-fit: contain;
 }
 
@@ -79,3 +79,21 @@
     font-size: 15px;
     border-bottom: 1px dashed gray;
 }
+
+@media only screen and (max-width: 400px) {
+  .post{
+    margin-top: 0;
+    margin-bottom: 13px;
+  }
+  .likeIcon{
+      height: 17px;
+      width: 17px;
+  }
+  .postCommentText{
+    font-size: 10px;
+  }
+  .postLikeCounter{
+    font-size: 12px;
+  }
+}
+

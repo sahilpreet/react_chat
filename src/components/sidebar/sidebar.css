@@ -1,5 +1,5 @@
 .sidebar{
-    flex: 3;
+    flex: 2.7;
     height: calc(100vh - 50px);
     position: sticky;
     top: 50px;
@@ -54,6 +54,7 @@
     padding: 0;
     margin: 0;
     list-style: none;
+    overflow-y: scroll;
 }
 
 .followersHeading{
@@ -61,5 +62,18 @@
     font-weight: 400;
     margin-bottom: 20px;
 }
+
+@media only screen and (max-width: 600px) {
+    .sidebarList,.sidebarButton,.sidebarHr{
+        display: none;
+    }
+    .sidebar{
+        position: static;
+        flex: 1;
+    }
+    .sidebarFriendList{
+        height: 50px;
+    }
+  }
 
 
