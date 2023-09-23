@@ -15,7 +15,7 @@ import CloseFriend from "../closeFriend/CloseFriend";
 import { AuthContext } from "../../context/AuthContext";
 
 function Sidebar() {
-  const {user}=useContext(AuthContext)
+  const { user } = useContext(AuthContext);
 
   return (
     <div className="sidebar">

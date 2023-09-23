@@ -8,22 +8,24 @@
     padding: 20px;
 }
 
-.searchbarFriend{
-    display: flex;
-    align-items: center;
+.searchResults{
+    font-size: 20px;
     margin-bottom: 15px;
-    /* justify-content: space-around; */
 }
 
-.searchbarFriendImg{
-    width: 62px;
-    height: 62px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-right: 25px;
+.searchbarFriendList{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    overflow-y: scroll;
 }
 
-.searchbarFriendName{
-    font-size: 25px;
-    font-weight: 400;
-}
+
+
+@media only screen and (max-width: 600px) {
+    .searchContainer{
+        flex-direction: column;
+        /* display: none; */
+    }
+
+  }

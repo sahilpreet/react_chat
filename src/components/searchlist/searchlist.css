@@ -1,3 +1,8 @@
+.searchbarFriend{
+    display: flex;
+    align-items: center;
+    margin-bottom: 14px;
+}
 .searchbarFriendImg{
     width: 62px;
     height: 62px;
@@ -7,6 +12,7 @@
 }
 
 .searchbarFriendName{
-    font-size: 25px;
+    font-size: 20px;
     font-weight: 400;
+    text-overflow: ellipsis;
 }

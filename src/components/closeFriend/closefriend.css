@@ -1,13 +1,14 @@
 .sidebarFriend{
     display: flex;
     align-items: center;
-    margin: 15px 0; 
+    margin: 15px 0;
+    margin-right: 10px; 
     /* justify-content: space-around; */
 }
 
 .sidebarFriendImg{
-    width: 32px;
-    height: 32px;
+    width: 42px;
+    height: 42px;
     border-radius: 50%;
     object-fit: cover;
     margin-right: 10px;

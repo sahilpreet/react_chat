@@ -91,7 +91,7 @@
 .rightbarFollowingName {
   margin-top: 10px;
   font-size: 20px;
-  font-weight: 300;
+  font-weight: 400;
   text-align: center;
   text-overflow: ellipsis;
 }
@@ -134,5 +134,8 @@
   .rightbarFollowing{
     width: 70px;
     height: 70px;
+  }
+  .rightbarFollowingName{
+    font-size: 13px;
   }
 }

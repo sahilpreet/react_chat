@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 
 function Search() {
   const { user, searchItems } = useContext(AuthContext);
-  
+
   console.log(searchItems);
 
   return (
@@ -18,7 +18,8 @@ function Search() {
       <div className="searchContainer">
         <Sidebar />
         <div className="searchItemsDisplay">
-          <ul className="sidebarFriendList">
+          <div className="searchResults">Search Results</div>
+          <ul className="searchbarFriendList">
             {searchItems.map((searchListItem) => (
               <SearchList searchListItem={searchListItem} />
             ))}
