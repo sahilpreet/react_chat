@@ -6,7 +6,8 @@
   align-items: center;
   /* background-color: #1877f2; */
   /* background-color: #8338ec; */
-  background-color: #3b28cc;
+  /* background-color: #3b28cc; */
+  background-color: var(--primary);
   display:flex;
   z-index: 999;
 
@@ -102,12 +103,12 @@
     cursor: pointer;
 }
 
-@media only screen and (max-width: 300px) {
+@media only screen and (max-width: 500px) {
     .topbarLinks{
         display: none;
     }
     .logo{
-        font-size: 15px;
+        font-size: 20px;
     }
     .searchbar{
         width: 60%;

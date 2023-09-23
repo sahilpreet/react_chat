@@ -1,4 +1,11 @@
 *{
     margin:0;
     font-family: 'Roboto', sans-serif;
+
+}
+
+:root{
+    /* --primary:#17c3b2 */
+    /* --primary:#0466c8 */
+    --primary:#00a8e8
 }

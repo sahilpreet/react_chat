@@ -101,7 +101,7 @@
   margin-bottom: 10px;
   border: none;
   /* background-color: #1872f2; */
-  background-color: #3b28cc;
+  background-color: var(--primary);
   color: white;
   border-radius: 5px;
   padding: 5px 10px;
